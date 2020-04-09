@@ -22,7 +22,7 @@ public class KarateRunnerTest {
         String karateOutputPath = "target/cucumber-html-reports";
         KarateStats karateStats = CucumberRunner.parallel(getClass(), 1, karateOutputPath);
         generateReport(karateOutputPath);
-        Assert.assertEquals("There are scenario failures", 0, karateStats.getFailCount());
+        Assert.assertEquals("Some scenarios did not pass the tests", 0, karateStats.getFailCount());
     }
 
     private static void generateReport(String karateOutputPath) {

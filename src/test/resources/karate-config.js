@@ -10,7 +10,14 @@ function fn() {
         port = '8082'
     }
 
+    var host = 'localhost';
+    if('dev' === environment) {
+        host = '192.168.1.203'
+    }
+
+    karate.log('using ' + environment + ' environment')
+
     return {
-        apiBasePath: 'http://' + environment + ':' + port + '/tasklist-management/api'
+        apiBasePath: 'http://' + host + ':' + port + '/tasklist-management/api'
     };
 }
