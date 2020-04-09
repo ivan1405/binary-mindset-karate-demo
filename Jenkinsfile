@@ -3,7 +3,6 @@ pipeline {
     agent { label "master" }
 
     tools {
-        jdk 'jdk8'
         maven 'Maven-LATEST'
     }
 
