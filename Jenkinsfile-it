@@ -1,0 +1,35 @@
+pipeline {
+
+    agent { label "master" }
+
+    tools {
+        maven 'Maven-LATEST'
+    }
+
+    stages {
+
+        stage('Maven build') {
+            steps {
+                sh "mvn clean"
+            }
+        }
+
+        stage('test') {
+            steps {
+                script {
+                    sh "mvn test"
+                }
+            }
+        }
+
+        stage('generate reports') {
+            steps {
+                cucumber buildStatus: "UNSTABLE",
+                fileIncludePattern: "**/*.json",
+                jsonReportDirectory: "target"
+            }
+        }
+
+    }
+
+}
