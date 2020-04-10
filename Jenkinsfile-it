@@ -6,6 +6,14 @@ pipeline {
         maven 'Maven-LATEST'
     }
 
+    parameters {
+        choice(
+                choices: ['dev', 'preprod'],
+                description: 'Choose an environment please',
+                name: 'Environment'
+        )
+    }
+
     stages {
 
         stage('Maven build') {
@@ -17,7 +25,7 @@ pipeline {
         stage('test') {
             steps {
                 script {
-                    sh "mvn test"
+                    sh "mvn test -Denv=${params.Environment}"
                 }
             }
         }
