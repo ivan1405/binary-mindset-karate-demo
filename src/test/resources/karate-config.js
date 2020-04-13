@@ -12,6 +12,7 @@ function fn() {
 
     var host = 'localhost';
     if('dev' === environment) {
+        // configure your own IP here
         host = '192.168.1.203'
     }
 
